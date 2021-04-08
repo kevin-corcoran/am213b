@@ -75,7 +75,7 @@ function Newtons(f, df, x0, s, tol = 10.0^(-8.0), maxiter=10000)
         xn_1 = xn - f(xn,s)/df(xn,s)
         # Stop once desired accuracy is achieved 
         if (abs(xn_1 - xn) < tol)
-            println("success")
+            # println("success")
             break
         end
         xn = xn_1
@@ -95,7 +95,22 @@ function Euler(func, N, T, t0, u0, λ=0)
     return u
 end
 
-# Backwards Euler is too dependend on the specific differential equation
+# Backwards Euler is too dependant on the specific differential equation
 # function BackwardEuler(N,T,t0,u0,λ)
+
+# Trapezoid too dependant on specific function
+
+function Midpoint2Step(func, N, T, t0, u0, u1, λ=0)
+    u = zeros(N+1)
+    u[1] = u0
+    u[2] = u1
+    h = T/N
+    t = t0
+    for i = 2:N
+        t += h
+        u[i+1] = u[i-1] + 2*h*func(u[i],t, λ)
+    end
+    return u
+end
 
 end

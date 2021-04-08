@@ -8,6 +8,7 @@ include("DiffyQ.jl") # Makes sure the module is run before using it
 using .DiffyQ # Newtons Method is defined here
 
 func(u, t, λ) = -λ*sinh(u-cos(t-1))
+
 function Trapezoid(N,T,t0, u0, λ)
     # u = spzeros(N)
     u = zeros(N+1)
@@ -32,3 +33,11 @@ N = Int(T/h)
 u = Trapezoid(N,T,t0,u0,λ)
 tList = collect(0:N)*(T/N)
 plot(tList, u)
+
+for i = 7:2:13
+    local h = 2.0^(-i)
+    N = Int(T/h)
+    local u = Trapezoid(N,T,t0,u0,λ)
+    local tList = collect(0:N)*(T/N)
+    display(plot(tList, u))
+end

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2020.12.8)  7 APR 2021 16:43
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (TeX Live 2020/Debian) (preloaded format=pdflatex 2020.12.8)  7 APR 2021 23:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -379,28 +379,28 @@ File: l3backend-pdfmode.def 2020-06-29 L3 backend support: PDF mode
 \l__kernel_color_stack_int=\count277
 \l__pdf_internal_box=\box49
 )
-No file ass_1_report.aux.
+(./ass_1_report.aux)
 \openout1 = `ass_1_report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 120.
-LaTeX Font Info:    ... okay on input line 120.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 122.
+LaTeX Font Info:    ... okay on input line 122.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 1
-20.
-(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+22.
+ (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 *geometry* driver: auto-detecting
@@ -461,14 +461,14 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \microtypecontext on input line 120.
+LaTeX Info: Redefining \microtypecontext on input line 122.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `basictext'.
-LaTeX Info: Redefining \showhyphens on input line 120.
+LaTeX Info: Redefining \showhyphens on input line 122.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -478,7 +478,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 (RS)
 )
 \AtBeginShipoutBox=\box51
-Package hyperref Info: Link coloring ON on input line 120.
+Package hyperref Info: Link coloring ON on input line 122.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
@@ -491,38 +491,40 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count284
 )
-LaTeX Info: Redefining \ref on input line 120.
-LaTeX Info: Redefining \pageref on input line 120.
-LaTeX Info: Redefining \nameref on input line 120.
+LaTeX Info: Redefining \ref on input line 122.
+LaTeX Info: Redefining \pageref on input line 122.
+LaTeX Info: Redefining \nameref on input line 122.
+
+(./ass_1_report.out) (./ass_1_report.out)
 \@outlinefile=\write3
 \openout3 = `ass_1_report.out'.
 
 \c@lstlisting=\count285
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-26.
+25.
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-126.
+125.
 
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-126.
+125.
 
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 126.
+(Font)              <14.4> on input line 125.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 126.
+(Font)              <10> on input line 125.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 126.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 126
+(Font)              <7> on input line 125.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 125
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
@@ -531,7 +533,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 126
+LaTeX Font Info:    Trying to load font information for U+msb on input line 125
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -541,7 +543,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Trying to load font information for OT1+lmtt on input line 
-129.
+131.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmtt.fd
 File: ot1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -551,52 +553,157 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `OT1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 130.
+(Font)              Font shape `OT1/lmtt/b/n' tried instead on input line 132.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 144.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 144.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 144.
  [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-<figures/ass_1_report_1_1.pdf, id=72, 602.25pt x 401.5pt>
-File: figures/ass_1_report_1_1.pdf Graphic file (type pdf)
-<use figures/ass_1_report_1_1.pdf>
-Package pdftex.def Info: figures/ass_1_report_1_1.pdf  used on input line 221.
-(pdftex.def)             Requested size: 469.47046pt x 312.99106pt.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 224.
- [2] [3 <./figures/ass_1_report_1_1.pdf>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 224.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
+<figures/ass_1_report_2_1.pdf, id=113, 578.16pt x 385.44pt>
+File: figures/ass_1_report_2_1.pdf Graphic file (type pdf)
+<use figures/ass_1_report_2_1.pdf>
+Package pdftex.def Info: figures/ass_1_report_2_1.pdf  used on input line 226.
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 237.
+ [3 <./figures/ass_1_report_2_1.pdf>]
+LaTeX Font Info:    Trying to load font information for OMS+lmtt on input line 
+270.
+LaTeX Font Info:    No file OMSlmtt.fd. on input line 270.
+
+
+LaTeX Font Warning: Font shape `OMS/lmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbackslash' on input line 270.
+
+<figures/ass_1_report_5_1.pdf, id=140, 578.16pt x 385.44pt>
+File: figures/ass_1_report_5_1.pdf Graphic file (type pdf)
+<use figures/ass_1_report_5_1.pdf>
+Package pdftex.def Info: figures/ass_1_report_5_1.pdf  used on input line 275.
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+[4 <./figures/ass_1_report_5_1.pdf>]
+<figures/ass_1_report_6_1.pdf, id=167, 578.16pt x 385.44pt>
+File: figures/ass_1_report_6_1.pdf Graphic file (type pdf)
+<use figures/ass_1_report_6_1.pdf>
+Package pdftex.def Info: figures/ass_1_report_6_1.pdf  used on input line 303.
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+<figures/ass_1_report_7_1.pdf, id=168, 578.16pt x 385.44pt>
+File: figures/ass_1_report_7_1.pdf Graphic file (type pdf)
+<use figures/ass_1_report_7_1.pdf>
+Package pdftex.def Info: figures/ass_1_report_7_1.pdf  used on input line 321.
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+ [5 <./figures/ass_1_report_6_1.pdf>]
+[6 <./figures/ass_1_report_7_1.pdf>]
+<figures/ass_1_report_8_1.pdf, id=219, 578.16pt x 385.44pt>
+File: figures/ass_1_report_8_1.pdf Graphic file (type pdf)
+<use figures/ass_1_report_8_1.pdf>
+Package pdftex.def Info: figures/ass_1_report_8_1.pdf  used on input line 360.
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+ [7 <./figures/ass_1_report_8_1.pdf>]
+<figures/ass_1_report_9_1.pdf, id=245, 578.16pt x 385.44pt>
+File: figures/ass_1_report_9_1.pdf Graphic file (type pdf)
+<use figures/ass_1_report_9_1.pdf>
+Package pdftex.def Info: figures/ass_1_report_9_1.pdf  used on input line 401.
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+<figures/ass_1_report_10_1.pdf, id=246, 578.16pt x 385.44pt>
+File: figures/ass_1_report_10_1.pdf Graphic file (type pdf)
+<use figures/ass_1_report_10_1.pdf>
+Package pdftex.def Info: figures/ass_1_report_10_1.pdf  used on input line 419.
+
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+<figures/ass_1_report_10_2.pdf, id=247, 578.16pt x 385.44pt>
+File: figures/ass_1_report_10_2.pdf Graphic file (type pdf)
+<use figures/ass_1_report_10_2.pdf>
+Package pdftex.def Info: figures/ass_1_report_10_2.pdf  used on input line 420.
+
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+<figures/ass_1_report_10_3.pdf, id=248, 578.16pt x 385.44pt>
+File: figures/ass_1_report_10_3.pdf Graphic file (type pdf)
+<use figures/ass_1_report_10_3.pdf>
+Package pdftex.def Info: figures/ass_1_report_10_3.pdf  used on input line 421.
+
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+
+[8 <./figures/ass_1_report_9_1.pdf>] [9 <./figures/ass_1_report_10_1.pdf> <./fi
+gures/ass_1_report_10_2.pdf>]
+<figures/ass_1_report_11_1.pdf, id=283, 578.16pt x 385.44pt>
+File: figures/ass_1_report_11_1.pdf Graphic file (type pdf)
+<use figures/ass_1_report_11_1.pdf>
+Package pdftex.def Info: figures/ass_1_report_11_1.pdf  used on input line 448.
+
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+ [10 <./figures/ass_1_report_10_3.pdf>]
+<figures/ass_1_report_12_1.pdf, id=305, 578.16pt x 385.44pt>
+File: figures/ass_1_report_12_1.pdf Graphic file (type pdf)
+<use figures/ass_1_report_12_1.pdf>
+Package pdftex.def Info: figures/ass_1_report_12_1.pdf  used on input line 468.
+
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+ [11 <./figures/ass_1_report_11_1.pdf>]
+<figures/ass_1_report_13_1.pdf, id=321, 578.16pt x 385.44pt>
+File: figures/ass_1_report_13_1.pdf Graphic file (type pdf)
+<use figures/ass_1_report_13_1.pdf>
+Package pdftex.def Info: figures/ass_1_report_13_1.pdf  used on input line 490.
+
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+<figures/ass_1_report_13_2.pdf, id=322, 578.16pt x 385.44pt>
+File: figures/ass_1_report_13_2.pdf Graphic file (type pdf)
+<use figures/ass_1_report_13_2.pdf>
+Package pdftex.def Info: figures/ass_1_report_13_2.pdf  used on input line 491.
+
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+<figures/ass_1_report_13_3.pdf, id=323, 578.16pt x 385.44pt>
+File: figures/ass_1_report_13_3.pdf Graphic file (type pdf)
+<use figures/ass_1_report_13_3.pdf>
+Package pdftex.def Info: figures/ass_1_report_13_3.pdf  used on input line 492.
+
+(pdftex.def)             Requested size: 469.47046pt x 312.98102pt.
+ [12 <./figures/ass_1_report_12_1.pdf>] [13 <./figures/ass_1_report_13_1.pdf> <
+./figures/ass_1_report_13_2.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 498.
+ [14 <./figures/ass_1_report_13_3.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 498.
  (./ass_1_report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 224.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 224.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 498.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 498.
+Package rerunfilecheck Info: File `ass_1_report.out' has not changed.
+(rerunfilecheck)             Checksum: 11CF3F07A352C18EDD00B6B7866C93E3;653.
 
 
-Package rerunfilecheck Warning: File `ass_1_report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package rerunfilecheck Info: Checksums for `ass_1_report.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  82966B05FF5DDEC15F574EC278A6E0C3;88.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 224.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 498.
  ) 
 Here is how much of TeX's memory you used:
- 10732 strings out of 482854
- 158575 string characters out of 5956881
- 541994 words of memory out of 5000000
- 25783 multiletter control sequences out of 15000+600000
- 568882 words of font info for 66 fonts, out of 8000000 for 9000
+ 11067 strings out of 482854
+ 165011 string characters out of 5956881
+ 492989 words of memory out of 5000000
+ 25944 multiletter control sequences out of 15000+600000
+ 604291 words of font info for 106 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 43i,6n,42p,603b,1808s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/share/texmf/fonts/enc/
-dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/sha
-re/texmf/fonts/enc/dvips/lm/lm-mathex.enc}</usr/share/texmf/fonts/type1/public/
-lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/te
-xmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lm
-r12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/font
-s/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb
-></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
-Output written on ass_1_report.pdf (3 pages, 158173 bytes).
+ 43i,9n,42p,788b,1808s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/en
+c/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/s
+hare/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/l
+m/lm-rmtt.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y10.pfb></usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fo
+nts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.p
+fb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/t
+ype1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></us
+r/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/pub
+lic/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/t
+exmf/fonts/type1/public/lm/lmri12.pfb></usr/share/texmf/fonts/type1/public/lm/l
+msy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/f
+onts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.
+pfb></usr/share/texmf/fonts/type1/public/lm/lmtti10.pfb>
+Output written on ass_1_report.pdf (14 pages, 637724 bytes).
 PDF statistics:
- 171 PDF objects out of 1000 (max. 8388607)
- 155 compressed objects within 2 object streams
- 96 named destinations out of 1000 (max. 500000)
- 9734 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 460 PDF objects out of 1000 (max. 8388607)
+ 409 compressed objects within 5 object streams
+ 220 named destinations out of 1000 (max. 500000)
+ 17583 words of extra memory for PDF output out of 20736 (max. 10000000)
 

@@ -1,75 +1,39 @@
+---
+title: Assignment \#1
+author: Kevin Corcoran
+---
+
+**Including packages**
+
+Most functions I've written in the DiffyQ.jl module. I did this in order to make the code, and this report a little cleaner. I have explicitely written the implicit methods in this report like backwards Euler and the Tapezoid method.
+
+```julia
+using Plots
+using LaTeXStrings
+# Load DiffyQ Module and required functions
+using Pkg
+Pkg.activate("DiffyQ")
+include("code/DiffyQ.jl") # Makes sure the module is run before using it
+using .DiffyQ: CompTrapezoid, CompSimpson, Newtons, Euler, Midpoint2Step
+```
+
 # Problem 1
 
 # Problem 2
-`` \int_1^3 \sqrt(2+\cos(x)^3)\exp(\sin(x))dx``
+
+Solve ``\int_1^3 \sqrt{2+\cos(x)^3}\exp(\sin(x))dx`` using the *Composite Simpson* and *Composite Trapezoid* Rule.
+
+Then estimate the error using formula ``E(h) = \frac{|T(h)-T(h/2)|}{1-1/2^p}``.
+
+Plot the result on a ``\log\log`` plot.
+
+**Run simulations for ``N = 2^2, 2^3, …,2^{10}``**
 
 ```julia
-using LinearAlgebra
-using Plots
-using LaTeXStrings
-
+# function to be integrated from a to b
 f(t) = sqrt(2 + cos(t)^3)*exp(sin(t))
 
-function CompTrapezoid(N, a, b, f)
-
-    #=
-        Integrates f(t) from a to b using composite trapezoid rule
-
-        Input variables
-        N: number of points
-        a: initial point
-        b: final point
-        f: function to be integrated
-
-        local variables
-        h: step size
-        s: solution
-    =#
-
-    h = (b-a)/N
-    s = 0
-    for i = 1:N
-        s += h/2 * (f(a + h*(i-1)) + f(a + h*i))
-    end
-    return s
-end
-
-function CompSimpson(N, a, b, f)
-
-    #=
-        Integrates f(t) from a to b using composite simpsons rule
-
-        Input variables
-        N: number of points
-        a: initial point
-        b: final point
-        f: function to be integrated
-
-        local variables
-        h: step size
-        s: solution
-        ts: partition points
-    =#
-
-    h = (b-a)/N
-    s = f(a) + f(b)
-
-    ts = a:h:b
-    for i = 1:(Int(N/2) - 1)
-       s += 2*f(ts[2*i])
-    end
-    for i = 1:Int(N/2)
-        s += 4*f(ts[2*i-1])
-    end
-
-    s = h/3 * s
-    return s
-end
-
-a = 1; b = 3; T = b-a;
-
-# CompTrapezoid(N,a,b,f)
-# CompSimpson(N,a,b,f)
+a = 1; b = 3; #= N = 2^(10); =# T = b-a;
 
 # Plotting error routine
 NList = 2 .^(2:10)
@@ -84,13 +48,246 @@ for i = 1 : length(NList)
     usimps = CompSimpson(N,a,b,f)
     usexact = CompSimpson(2*N,a,b,f)
 
-    # errTrapeList[i] = norm(utrape-uexact)
+    # estimate error
     errTrapeList[i] = abs(utrape-utexact)./(1-(1/2^2))
     errSimpList[i] = abs(usimps-usexact)./(1-(1/2^4))
 end
 
 plot(T./NList, errTrapeList,label="Trapezoid",xaxis=:log,yaxis=:log, marker = (:dot,5), add_marker = true)
 plot!(T./NList, errSimpList,label="Simpson",xaxis=:log,yaxis=:log, marker = (:square,5), add_marker = true)
-xlabel!(L"h")
+xlabel!("Stepsize")
 ylabel!("Approximate Error")
 ```
+
+# Problem 3
+
+Implement Newton's method to solve the non-linear equation for 0
+
+``x-\alpha+\beta\sinh\left( x - \cos(s-1) \right) = 0``
+
+**Defining variables**
+```julia
+α = 0.9
+β = 50000.0
+# equation to solve
+f(x,s) = x - α + β*sinh(x-cos(s-1))
+# derivative of equation
+df(x,s) = 1 + β*cosh(x-cos(s-1))
+# initial guess
+x0 = 2.0
+```
+
+
+**Solving equation for various values of ``s``**
+```julia
+ss = 0.0:0.1:20.0
+
+xs = []
+for s in ss
+    push!(xs,Newtons(f,df,x0,s))
+end
+```
+
+**Plotting x vs s and cos(s-1) on the same plot**
+```julia
+plot(ss,xs, label = L"Newtons",marker = (:dot,2), add_marker=true, thickness_scaling = 1.5)
+plot!(ss, cos.(ss.-1), label = L"\cos(s-1)")
+xlabel!("s")
+ylabel!("x")
+```
+
+# Problem 4
+
+## Part 1
+
+Solve the initial value problem using Eulers method for ``T = 2^{-10}`` and various values of h.
+
+**The solution when the stepsize is not small enough. We see that the solution is not bounded.**
+
+```julia
+# Differential equation
+func(u, t, λ) = -λ*sinh(u-cos(t-1))
+
+# defining variables/initial conditions
+T = 2.0^(-10.0); t0 = 0; u0 = 0; λ = 10.0^(6.0);
+
+# Foward Euler
+h0 = 2.0^(-18);
+N = Int(T/(h0))
+h = T/N
+
+u = Euler(func,N,T,t0,u0,λ)
+tList = collect(0:N)*(T/N)
+plot(tList, u, label = "Euler")
+xlabel!(L"t", thickness_scaling = 1.5)
+ylabel!(L"u(t)")
+```
+
+**Stepsize at ``h = 2^{-20}`` the solution becomes bounded**
+```julia
+# Foward Euler
+h0 = 2.0^(-18);
+N = Int(T/(h0*2.0^(-2))) 
+h = T/N
+
+u = Euler(func,N,T,t0,u0,λ)
+tList = collect(0:N)*(T/N)
+plot(tList, u, label = "Euler")
+xlabel!(L"t", thickness_scaling = 1.5)
+ylabel!(L"u(t)")
+```
+
+## Part 2
+
+For backward Euler I explicitely defined the function and derivative for Newtons method.
+
+**The solution for ``T=10`` using backward Euler**
+```julia
+# Backward Euler
+function BackwardEuler(N,T,t0,u0,λ)
+    u = zeros(N+1)
+    u[1] = u0
+    h = T/N
+    t = t0
+    x0 = 2.0
+    for i = 1:N
+        t += h
+        f(x, s) = u[i] + h*(-λ*sinh(x-cos(t-1)))
+        df(x,s) = -λ*h*cosh(x-cos(t-1)) - 1
+
+        u[i+1] = Newtons(f, df, x0, 1)
+    end
+
+    return u
+end
+
+T = 10.0; t0 = 0.0; u0 = 0; λ = 10.0^(6.0); h = 0.1;
+N = Int(T/h)
+
+# u = DiffyQ.BackwardEuler(N,T,t0,u0,λ)
+u = BackwardEuler(N,T,t0,u0,λ)
+tList = collect(0:N)*(T/N)
+# tList = t0:h:T+t0
+plot(tList, u, label = "backward Euler")
+xlabel!(L"t", thickness_scaling = 1.5)
+ylabel!(L"u(t)")
+```
+
+# Problem 5
+
+Like backward Euler the Trapezoid method is also implicit, so I explicitely define the method here.
+
+## Part 1
+
+**The solution for ``T=10`` and ``h=0.1``**
+
+```julia
+# The differential equation to be solved
+func(u, t, λ) = -λ*sinh(u-cos(t-1))
+
+function Trapezoid(N,T,t0, u0, λ)
+    # u = spzeros(N)
+    u = zeros(N+1)
+    u[1] = u0
+    h = T/N
+    t = t0
+    for i = 1:N
+        t += h
+        # Use Newtons Method to solve nonlinear eqn for u[n+1]
+        f(x,s) = u[i] + h/2 * (func(u[i],t-h,λ) - λ*sinh(x-cos(t-1))) - x
+        df(x,s) = -λ*h/2*cosh(x-cos(t-1)) - 1
+        u[i+1] = Newtons(f,df,2.0,1.0)
+    end
+    return u
+end
+
+T = 10; t0 = 0; u0 = 0; λ = 10.0^(6.0);
+
+h = 0.1
+N = Int(T/h)
+
+u = Trapezoid(N,T,t0,u0,λ)
+tList = collect(0:N)*(T/N)
+plot(tList, u, label = "Trapezoid")
+xlabel!(L"t", thickness_scaling = 1.5)
+ylabel!(L"u(t)")
+```
+
+This method seems to oscillate around the solution.
+
+## Part 2
+
+**Plotting smaller and smaller stepsizes, we can see how the solution behaves**
+```julia
+for i = 7:2:12
+    local h = 2.0^(-i)
+    local N = Int(T/h)
+    local u = Trapezoid(N,T,t0,u0,λ)
+    local tList = collect(0:N)*(T/N)
+    display(plot(tList, u, label = "Trapezoid", xlabel = L"t", thickness_scaling = 1.5, ylabel= L"u(t)"))
+end
+```
+
+The oscillations dissipate and the method converges to the solution.
+
+# Problem 6
+
+## Part 1
+
+**Plotting Euler's method and 2-step Midpoint rule for ``T = 2`` and ``h=0.2``**
+
+```julia
+func(u,t, λ) = -u
+
+T = 2; h = 0.2; t0 = 0;
+N = Int(T/h)
+uexact(t) = exp(-t)
+u0 = 1
+u1 = uexact(h)
+
+umid = Midpoint2Step(func, N, T, t0, u0, u1)
+ueul = Euler(func, N, T, t0, u0)
+
+tList = collect(0:N)*(T/N)
+plot(tList,umid, label = "Midpoint")
+plot!(tList,ueul, label = "Euler")
+plot!(tList,uexact.(tList), label = "Exact", marker = (:dot,1.5), add_marker=true)
+```
+
+**The midpoint method is more accurate in this time period.**
+
+## Part 2
+
+**Ploting now over a longer time period ``T = 20``**
+```julia
+T = 20.0
+N = Int(T/h)
+
+umid = Midpoint2Step(func, N, T, t0, u0, u1)
+ueul = Euler(func, N, T, t0, u0)
+
+tList = collect(0:N)*(T/N)
+plot(tList,umid, label = "Midpoint")
+plot!(tList,ueul, label = "Euler")
+```
+
+**The midpoint method is not well behaved.**
+
+## Part 3
+
+**Reducing now the timestep for the same time period ``T=20``**
+```julia
+for i = 5:7
+    local h = 0.2/(2^i)
+    local N = Int(T/h)
+    local umid = Midpoint2Step(func, N, T, t0, u0, u1)
+    local ueul = Euler(func, N, T, t0, u0)
+
+    local tList = collect(0:N)*(T/N)
+    local p1 = plot(tList,umid, label = "Midpoint")
+    local p2 = plot!(tList,ueul, label = "Euler")
+    display(p2)
+end
+```
+
+**The midpoint method does not improve.**
