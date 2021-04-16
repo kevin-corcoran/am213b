@@ -1,0 +1,151 @@
+---
+title: Assignment \#2
+author: Kevin Corcoran
+---
+
+**Including packages**
+
+Most functions I've written in the DiffyQ.jl module. I did this in order to make the code, and this report a neater. 
+
+```julia
+using Plots
+using LaTeXStrings
+# Load DiffyQ Module and required functions
+using Pkg
+Pkg.activate("DiffyQ")
+include("code/DiffyQ.jl") # Makes sure the module is run before using it
+using .DiffyQ: rk4, fehlberg
+```
+
+
+# Problem 1
+# Problem 2
+## Part 1:
+## Part 2:
+## Part 3:
+# Problem 3
+## Part 1 (2-step Adams-Bashforth):
+## Part 2 (1-step Adams-Moulton):
+
+For the following problems solve ``y''-\mu (2-\exp((y')^2))y'+y=0``. First convert to system.
+
+# Problem 4
+Use ``y_0 = 3``, ...
+``\mu = 0.5``, ...
+
+**Plot ``y(t)`` vs ``t``**
+
+```julia
+# differential equation
+function func(u, t, μ)
+    return [u[2]; μ*(2-exp(u[2]^2)*u[2] - u[1])]
+end
+
+# defining variables
+u0 = [3.0; 0.5] # y(0) and y'(0)
+h = 0.025; T = 30;
+N = Int(T/h);
+t = collect(0:N)*h
+
+# run rk4 for various values of μ and plot the results
+μs = [0.5, 2, 4]
+for μ in μs
+    u = rk4(func, N, T, u0, μ)
+    p1 = plot(t,u[1,:], label = L"y(t)", thickness_scaling = 1.5)
+    p2 = plot!(t,u[2,:], label = L"y'(t)")
+    xlabel!("t")
+    title!(latexstring("rk4,h=0.025,\\mu=",μ))
+    display(p2)
+
+end
+```
+
+**Plot ``y'(t)`` vs ``y(t)``**
+
+```julia
+for μ in μs
+    u = rk4(func, N, T, u0, μ)
+    p3 = plot(u[1,:], u[2,:], thickness_scaling = 1.5, legend = false)
+    xlabel!(L"y(t)")
+    ylabel!(L"y'(t)")
+    title!(latexstring("rk4,h=0.025,\\mu=",μ))
+    display(p3)
+end
+```
+
+# Problem 5
+
+## Part 1
+Run simulations for decreasing step sizes and plot ``E_max`` vs ``h``
+
+```julia
+# defining variables
+u0 = [3.0; 0.5] # y(0) and y'(0)
+T = 30; μ = 4.0;
+N = Int(T/h);
+t = collect(0:N)*h
+
+# Part 1
+hs = 1 ./(2.0 .^(3:10))
+E_max = zeros(size(hs))
+for i = 1 : length(hs)
+    N = Int(T/hs[i])
+    u_nh = rk4(func, N, T, u0, μ)
+    u_2nh2 = rk4(func, 2*N, T, u0, μ)
+
+    # subtract every two from u_2nh2
+    E_max[i] = maximum(abs.(u_nh[1,1:N] - u_2nh2[1,1:2:2*N])./(1-0.5^4))
+end
+
+plot(hs, E_max, label = L"E_{\max}", xaxis = :log, yaxis = :log, marker = (:square,5), add_marker = true)
+xlabel!(L"h")
+ylabel!(L"\max||E_n(h)||")
+
+```
+
+Find the value of ``h`` where ``E_{\max} < 5x10^{-8}``. This occurs at the first index where ``E_{\max} < 5x10^{-8}``
+
+```julia
+# Part 2
+# Find index where E_max(h) < 5 x 10^-8
+index = findfirst(x->x < 5.0*(10.0^(-8)), E_max)
+hs[index]
+```
+
+``h = \frac{1}{2^7}``
+
+
+# Problem 6
+## Part 1
+
+Plot ``E_n^{(Fehlberg)}(h)`` vs ``t_n``
+
+```julia
+# defining variables
+u0 = [3.0; 0.5] # y(0) and y'(0)
+T = 30; μ = 4.0; h = 0.025;
+N = Int(T/h);
+t = collect(0:N)*h
+
+# Part 1
+(u, Eₙ) = fehlberg(func, N, T, u0, μ)
+
+# E = Eₙ[Eₙ .> 10.0^(-17)]
+E = Eₙ[Eₙ .!= 0.0]
+plot(t[1:length(E)], E, label = L"E^{Fehlberg}_{n}", yaxis = :log)
+xlabel!(L"t")
+```
+
+## Part 2
+
+Plot ``E_n`` vs ``t_n``
+
+```julia
+# Part 2
+(u2, Eₙ) = fehlberg(func, 2*N, T, u0, μ)
+
+E = abs.(u[1,1:N] - u2[1,1:2:2*N])/(1-0.5^5)
+E = E[E .!= 0.0]
+plot(t[1:length(E)], E, label = L"E_n", yaxis =:log)
+xlabel!(L"t")
+```
