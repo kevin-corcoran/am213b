@@ -1,0 +1,352 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[makeroom]{cancel}
+
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+%\addtolength{\textheight}{+ .1\textheight}
+\title{HW 3 Theoretical Part}
+\author{Kevin Corcoran}
+%\date{}
+\begin{document}
+\maketitle
+
+\section{Problem 1}%
+\label{sec:problem_1}
+
+\subsection{Part 1}%
+\label{sub:part_1}
+
+\par \textbf{Derive the stability function $\Phi (z)$ for the following} 
+
+
+\begin{itemize}
+  \item Predictor-corrector (Heun's)
+    \[
+      u_{n+1} = u_n + \frac{h}{2} \left(f(u_n,t_n) + f(u_n+hf(u_n,t_n),t_n)\right)
+    .\] 
+
+    \par For the model problem, $u'(t) = \gamma u(t)$, $f(u_n,t_n) = \gamma
+    u_n$, and $f(u_n + h\gamma u_n)=\gamma(u_n+h\gamma u_n)$. So we have
+
+    \begin{align*}
+      u_{n+1} &= u_n + \frac{h}{2} \left(\gamma u_n + \gamma (u_n + h\gamma
+      u_n) \right) \\
+              &= \left(1 + h\gamma + \frac{(h\gamma)^2}{2}\right) u_n
+    \end{align*}
+
+    \par Define $z = h\gamma$, then the stability function $\Phi (z)$ is
+    \[
+      \boxed{\Phi (z) = 1 + z + \frac{z^2}{2}}
+    .\] 
+
+  \item $4$-th order Runge-Kutta
+
+    \par For any Runga-Kutta method. Where $\vec{e}$ is a vector of all
+    ones, we can write the general method in vector notation
+
+    \begin{align*}
+      \vec{k} &= f(u_n \vec{e} + hA\vec{k}) \\
+      u_{n+1} &= u_{n} + h\vec{b}^T\vec{k} \\
+    \end{align*}
+
+    \par Then for the model problem, we have
+    
+    \begin{align*}
+      \vec{k} &= \gamma u_{n}\vec{e}+ \gamma hA\vec{k} \\
+      (I-zA)\vec{k} & = \gamma (I-zA)^{-1}u_{n}\vec{e} \\
+      \implies \vec{k} &= \gamma (I-zA)^{-1} u_{n} \vec{e}
+    \end{align*}
+
+    \par and then,
+
+    \begin{align*}
+      u_{n+1} &= u_{n} + h\vec{b}^T\vec{k} \\
+             &= u_{n} + z \vec{b}^{T} (I-zA)^{-1} u_{n} \vec{e} \\
+             &= \left(1 +z \vec{b}^{T} (I-zA)^{-1}  \vec{e} \right) u_{n}
+    \end{align*}
+
+    \par So the stability function $\Phi (z)$ for any RK method is
+    \[
+    \boxed{\Phi (z) = 1 +z \vec{b}^{T} (I-zA)^{-1}  \vec{e}}
+    .\] 
+
+\end{itemize}
+
+\subsection{Part 2}%
+\label{sub:part_2}
+
+\par \textbf{Study the zero-stability for each of the two LMMs below}
+
+\begin{itemize}
+  \item \[
+      u_{n+2}-2u_{n+1} + u_{n} = hf(u_{n+1},t_{n+1}) - f(u_{n},t_{n})
+  .\] 
+
+  \par This has the following characteristic polynomial ($=0$)
+
+  \begin{align*}
+    \rho (\omega) &= \omega^{2} -2 \omega + 1 = 0 \\
+                  &= ( \omega - 1)^{2} = 0
+  \end{align*}
+
+  With root $ \omega = 1$ of multiplicity $2$. Since this is not a simple root,
+  this method is \textbf{not} zero stable.
+
+\item \[
+    u_{n+2} - u_{n} = h \left( \frac{1}{3} f(u_{n+2}, t_{n+2}) + \frac{4}{3}
+    f(u_{n+1},t_{n+1}) + \frac{1}{3}f(u_n,t_n)\right)
+.\] 
+
+\par This method has characteristic polynomial 
+
+\[
+  \rho ( \omega) = \omega^{2} -1
+.\] 
+
+with roots 
+\[
+\omega = \pm 1
+.\] 
+
+Since $|w_i|\leq 1$, this method satisfies the root condition, and \textbf{is} therefore
+zero stable.
+
+\end{itemize}
+
+\section{Problem 2}%
+\label{sec:problem_2}
+
+\subsection{Part 1}%
+\label{sub:part_1}
+
+\textbf{Show that 2s-DIRK is second order for $ \alpha = 1- \frac{1}{ \sqrt{2}}$} 
+
+\par First order consistency condition 
+\begin{align*}
+  \sum^{p=2}_{i=1} b_i = 1 \\
+  \implies (1 - \alpha) + \alpha = 1
+\end{align*}
+
+Which is satisfied regardless of the value of $ \alpha$.
+\vspace{15px}
+\par Second order consistency condition
+\begin{align*}
+  \sum^{p=2}_{i=1} b_i c_i &= \frac{1}{2} \\
+  &= \underbrace{(1- \alpha)}_{b_1} \underbrace{\alpha}_{c_1}
+  + \underbrace{\alpha}_{b_2} \underbrace{(1)}_{c_2} \\
+  &= \frac{1}{\sqrt{2}} \left(1 - \frac{1}{\sqrt{2}}\right)
+  + 1 - \frac{1}{\sqrt{2}} \\
+  &= \frac{1}{2}
+\end{align*}
+
+So for $ \alpha = 1 - \frac{1}{\sqrt{2}}$, 2s-DIRK is at least second order.
+
+\subsection{Part 2}%
+\label{sub:part_2}
+
+\par \textbf{For the model problem, $u' = \gamma u$, derive the expressions for
+$k_1$, $k_2$, and the stability funciton $\Phi(z)$} 
+
+\begin{align*}
+  k_1 &= f(u_n + \alpha h k_1, t_n + \alpha h ) \\
+      &= \gamma u_n + \alpha \gamma h k_1 \\
+  \implies &\boxed{k_1 = \frac{ \gamma}{1- \alpha z }u_n}
+\end{align*}
+
+\begin{align*}
+  k_2 &= f(u_n + h \left((1- \alpha) k_1 + a k_2\right), t_n + h) \\
+      &= \gamma u_n + z \left((1- \alpha)\underbrace{\frac{ \gamma}{1- \alpha
+      z }u_n}_{k_1} + \alpha k_2\right) \\
+  \implies &\boxed{k_2 = \frac{(1- \alpha z) \gamma + \gamma z (1- \alpha)}{(1-
+  \alpha z)^{2}} u_n}
+\end{align*}
+
+\par Then when $h$ is distributed in $u_{n+1} = u_{n} + \underbrace{h} ((1-
+  \alpha)k_1 + \alpha k_2)$, we get $k_1$, and $k_2$ as desired.
+
+  The stability function $\Phi$ follows from these results. Plugging in $k_1$
+  and $k_2$
+  
+  \[
+    u_{n+1} = \left(1 + (1- \alpha) \frac{z}{1- \alpha z } + \alpha \left(
+    \frac{ (1- \alpha z)z + z^{2}(1- \alpha) }{(1- \alpha z)^{2}}
+\right)\right) u_n
+  .\] 
+
+  So 
+  \[
+  \Phi(z) = 1 + (1- \alpha) \frac{z}{1- \alpha z } + \alpha \left(
+    \frac{ (1- \alpha z)z + z^{2}(1- \alpha) }{(1- \alpha z)^{2}}
+\right)
+  .\] 
+
+  \par Finding the common denominator and simplifying, we get the result as desired
+
+  \[
+    \boxed{\Phi(z) = \frac{ 1 + (1-2 \alpha)z }{(1- \alpha z)^{2}}}
+  .\] 
+\subsection{Part 3}%
+\label{sub:part_3}
+
+\par \textbf{Suppose 2s-DIRK is A-stable for $ \alpha
+= 1 - \frac{1}{\sqrt{2}}$. Show that it satisfies the second condition of
+L-stability} 
+
+We want to show 
+\[
+  \lim_{z \to \infty} \Phi (z) = 0
+.\] 
+
+Make the change of variable $w = \frac{1}{z}$, then we can equivalently take
+the limit as $w \to 0$
+
+ \begin{align*}
+   \lim_{w \to 0} \Phi(\frac{1}{w}) &= \lim_{w \to 0} \frac{ 1 + (1-2 \alpha) \frac{1}{w}
+   }{(1 - \alpha \frac{1}{w})^{2}} \\
+   &= \lim_{w \to 0} \frac{ w + (1-2 \alpha) }{w \frac{1}{w^{2}}(w- \alpha)^{2}} \\
+   &= \lim_{w \to 0} \frac{ w^{2} + (1- 2 \alpha) w }{(w- \alpha)^{2}} \\
+   &= 0
+\end{align*}
+
+So this method is L-stable.
+
+\section{Problem 3}%
+\label{sec:problem_3}
+
+\par Consider the implicit 2-step method
+\begin{align*}
+  u_{n+2} - u_{n} &= h \left(\frac{1}{3}f(u_{n+2},t_{n+2})
+  + \frac{4}{3}f(u_{n+1},t_{n+1}) + \frac{1}{3}f(u_{n},t_{n})\right) \\
+\end{align*}
+
+\subsection{Part 1}%
+\label{sub:part_1}
+
+\par \textbf{Show $e_n(h) = O(h^5)$}  
+
+\par For the model problem 
+\[
+   \begin{cases}
+     u'(t) = u(t) \\
+     u(0) = 1
+   \end{cases} \implies u(t) = e^{ t}
+.\] 
+
+\par the local truncation error 
+\begin{align*}
+  e_{n} &= \sum^{r}_{j=0} \alpha_{j}e^{ (t_{n}+jh)} - 
+  h \sum^{r}_{j=1} \beta_{j}e^{ (t_{n}+jh)} \\
+        &= e^{ t_{n}} \left( \sum \alpha_j e^{ jh} - \log(e^{jh})
+        \sum \beta_j e^{ jh}\right)
+\end{align*}
+
+\par define $ z = e^{ h}$, then the order of the local truncation error
+can be written in terms of $ z$
+\[
+  e_{n} = O(h^{p+1}) = O(\log( z)^{p+1}) \underbrace{=}_{\text{by Taylor
+  expansion}} O( | z-1|^{p+1})
+ .\] 
+
+
+\par and more compactly, in terms of characteristic polynomials
+ \begin{align}
+   e_{n} &= \sum \alpha_j z^{j} - \log( z) \sum \beta_j z^{j} \\
+         &= \rho( z) - \log( z) \sigma( z)
+ \end{align}
+
+ So now for this problem, we need to check the order of equation $(2)$. The
+ characteristic polynomials are
+
+ \begin{align*}
+   \rho(z) = z^{2}-1 \\
+   \sigma(z) = \frac{1}{3}z^{2} + \frac{4}{3}z + \frac{1}{3}
+ \end{align*}
+
+ let $ \zeta=z-1$, then
+ 
+ \begin{align*}
+   e_n &=\rho( \zeta + 1) - \log( \zeta + 1) \sigma( \zeta + 1) \\
+        &= ( \zeta + 1)^{2} -1 -\log( \zeta + 1) \left( \frac{1}{3} ( \zeta
+       +1)^{2} + \frac{4}{3}( \zeta + 1) + \frac{1}{3} \right)
+ \end{align*}
+
+ Taylor expanding $\log( \zeta+1)$
+
+ \begin{align*}
+   e_n &= \zeta^2 + 2 \zeta - \left( \zeta - \frac{\zeta^{2}}{2}
+   + \frac{\zeta^{3}}{3} - \frac{\zeta^{4}}{4} + \frac{\zeta^{5}}{5} + O(
+ \zeta^{6}) \left( \frac{1}{3} \zeta^{2} + 2 \zeta + 2\right)\right) \\
+       &=\zeta^2 + 2 \zeta - \left(2 \zeta + \zeta^{2}(-1+2)
+         + \zeta^{3}\cancel{(
+         \frac{2}{3} -1 + \frac{1}{3})} + \zeta^{4}\cancel{(- \frac{1}{2} + \frac{2}{3}
+       - \frac{1}{6})} + \zeta^{5} (\frac{2}{5}- \frac{1}{2} + \frac{1}{9}) + O(
+   \zeta^{6})\right) \\
+       &= \frac{1}{90} \zeta^{5} + O( \zeta^{6}) \\
+       &= \frac{1}{90} (z-1)^{5} + O( (z-1)^{6}) \\
+       &= O(h^{5})
+ \end{align*}
+
+ This shows that this implicit 2-step method is of order $5$.
+
+ \subsection{Part 2}%
+ \label{sub:part_2}
+
+ \textbf{Find roots of the following for $z = - \epsilon$, $\epsilon > 0$} 
+ \[
+   \pi( \xi, z) = (\xi^{2} -1) - z\left(\frac{1}{3} \xi^{2}+ \frac{4}{3} \xi
+   + \frac{1}{3}\right)
+ .\] 
+
+ Plugging in $z = -\epsilon$ and simplifying
+
+  \begin{align*}
+    \xi^{2} -1 + \epsilon \left( \frac{1}{3} \xi^{2} + \frac{4}{3} \xi
+    + \frac{1}{3}\right) &= 0 \\
+    \xi^{2} \left(1 + \frac{\epsilon}{3}\right) + \xi \left( \frac{4}{3}
+  \epsilon\right) + \frac{\epsilon}{3} - 1 &= 0
+ \end{align*}
+ 
+ Using the quadratic formula and simpifying
+
+ \begin{align*}
+   \xi &= \frac{ - \frac{4}{3} \epsilon \pm ( \sqrt{(\frac{4}{3}\epsilon)^{2}
+   - 4  (\frac{\epsilon}{3} + 1)( \frac{\epsilon}{3} -1)}}{2 (1
+ + \frac{\epsilon}{3})} \\
+       &= -\frac{2}{3} \epsilon \left( \frac{1}{1+ \frac{\epsilon}{3}}\right)
+       \pm \frac{ \sqrt{ \frac{12}{9}\epsilon^{2}+4} }{2 (1+
+       \frac{\epsilon}{3})} \\
+       &= -\frac{2}{3} \epsilon \left( \frac{1}{1+ \frac{\epsilon}{3}}\right)
+       \pm \frac{ \sqrt{1 + \frac{\epsilon}{3}} }{1 + \frac{\epsilon}{3}} \\
+       &= -\frac{2}{3} \epsilon \left( \frac{1}{1+ \frac{\epsilon}{3}}\right)
+       \pm \frac{1}{\sqrt{1 + \frac{\epsilon}{3}}}
+ \end{align*}
+
+ Now taylor expanding,
+
+ \begin{align*}
+   \xi &= - \frac{2}{3}\epsilon \left( 1- \frac{\epsilon}{3} + O(
+   \epsilon^{2})\right) \pm 1 - \frac{\epsilon}{6} + O(\epsilon^{2})
+ \end{align*}
+
+ Gives us the roots
+  \[
+    \xi_1 (\epsilon) = 1 - \frac{5}{6}\epsilon + O(\epsilon^{2}), \qquad \xi_2
+    = - \left(1 + \frac{1}{3}\right) + O(\epsilon^{2})
+  .\] 
+
+  Since $|\xi_i|\nleq 1$, the root condition is not satisfied, and so
+  $z=-\epsilon$ is \textbf{not} in the region of absolute stability.
+  
+\end{document}
