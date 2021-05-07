@@ -1,0 +1,101 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[makeroom]{cancel}
+
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+%\addtolength{\textheight}{+ .1\textheight}
+\title{HW 4 Theoretical Part}
+\author{Kevin Corcoran}
+%\date{}
+\begin{document}
+\maketitle
+
+\section{Problem 1}%
+\label{sec:problem_1}
+
+\subsection{Part 1}%
+\label{sub:part_1}
+
+\textbf{Show method has second order accuracy} 
+
+\par First order consistency condition 
+\begin{align*}
+  \sum^{p=1}_{i=1} b_i = 1 \\
+  \implies 1 = 1
+\end{align*}
+
+So method has first order accuracy
+
+\vspace{15px}
+\par Second order consistency condition
+\begin{align*}
+  \sum^{p=2}_{i=1} b_i c_i &= \frac{1}{2} \\
+  \implies 1(\frac{1}{2}) = \frac{1}{2}
+\end{align*}
+
+Therefore, this method is second order.
+
+\subsection{Part 2}%
+\label{sub:part_2}
+
+\par From homework three, I derived the stability function  Φ (z)  for any RK
+method,
+
+\[
+\Phi (z) = 1 +z \vec{b}^{T}  (I-zA)^{-1}   \vec{e}
+.\] 
+
+\par So in this case,
+
+\begin{align*}
+  \Phi (z) &= 1 + z (1-z\frac{1}{2})^{-1} \\
+           &= 1 + \frac{z}{1-z \frac{1}{2}} \\
+           \implies \boxed{\Phi (z) = \frac{ 1 + \frac{z}{2} }{1 - \frac{z}{2}}}
+\end{align*}
+
+\subsection{Part 3}%
+\label{sub:part_3}
+
+\par For $A$-stability, we want $|\Phi (z)| < 1$.  So, 
+
+\begin{align*}
+  \left|\frac{ 1 + \frac{z}{2} }{1 - \frac{z}{2}}\right| &\leq 1\\
+  \left|1 + \frac{z}{2}\right|^{2} &\leq \left|1 - \frac{z}{2} \right|^{2} \\
+\end{align*}
+
+\par Let $z = a+ib$ then,
+
+\begin{align*}
+  \left(a + \frac{a}{2}\right)^{2} + \left( \frac{b}{2}\right)^{2} \leq \left(
+  a- \frac{a}{2}\right)^{2} + \left(\frac{b}{2}\right)^{2}
+\end{align*}
+
+Which is satisfied when $a \leq 0$. This implies  $Re(z) \leq 0$, and therefore
+the method is  $A$-stable.
+
+\vspace{15px}
+For $L$-stability, we want $ \lim_{z \to \infty} \Phi (z) = 0 $.
+
+\begin{align*}
+  \lim_{z \to \infty} \Phi (z) &=\lim_{z \to \infty} \frac{ 1 + \frac{z}{2} }{1
+  - \frac{z}{2}}\\
+                               &= \lim_{z \to \infty} \frac{ \frac{2}{z} + 1 }{
+                               \frac{2}{z} - 1} \\
+                               &= -1
+\end{align*}
+
+Therefore, this method is not $L$-stable
+
+\end{document}

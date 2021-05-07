@@ -297,7 +297,11 @@ end
 
 function FiniteDifference(p, q, r, a, b, α, β, N)
     h = (b-a)/n; N1 = N-1;
-    xs = a .+ collect(1:N1)*h
+    xv = a .+ collect(1:N1)*h;
+    pv = p(xv);
+    qv = q(xv);
+    rv = r(xv);
+    # ...
 end
 
 end

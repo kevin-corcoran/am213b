@@ -5,7 +5,7 @@ theme(:mute)
 
 
 T = 2.0; N = 1000; h = T / N
-xs = collect(0:N-1)*h
+x = collect(0:N-1)*h
 
 # Laplacian
 L = 1/h^2 * spdiagm(-1=>ones(N-1),0=>-2.0*ones(N),1=>ones(N-1))
