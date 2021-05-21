@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[makeroom]{cancel}
+
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+%\addtolength{\textheight}{+ .1\textheight}
+\title{HW 4 Theoretical Part}
+\author{Kevin Corcoran}
+%\date{}
+\begin{document}
+\maketitle
+
+\section{Problem 1}%
+\label{sec:problem_1}
+
+\subsection{Part 1}%
+\label{sub:part_1}
+
+\textbf{Carry out von Neumann stability analysis for the BTCS method} 
+
+\vspace{15px}
+\par Plug in $u_{i}^{n} = p^{n}e^{\sqrt{-1}\xi i\Delta x}$ to the BTCS method
+
+\[
+u_{i}^{n+1}=u_{i}^{n} + r \left(u_{i+1}^{n+1}-2u_{i}^{n+1}+u_{i-1}^{n+1}\right)
+.\] 
+
+\begin{align*}
+  p^{n+1}e^{\sqrt{-1}\xi i\Delta x} &= p^{n}e^{\sqrt{-1}\xi i\Delta x}
+  + r p^{n+1}e^{\sqrt{-1}\xi i\Delta x} \left(e^{\sqrt{-1}\xi\Delta x}
+  - 2 + e^{-\sqrt{-1}\xi\Delta x} \right) \\
+\end{align*}
+
+\par Solving for $p$
+
+\begin{align*}
+  \left(e^{\sqrt{-1}\xi i\Delta x} -  r p^{n+1}e^{\sqrt{-1}\xi i\Delta x} \left(e^{\sqrt{-1}\xi\Delta x}
+  - 2 + e^{-\sqrt{-1}\xi\Delta x}\right)\right) p^{n}p &= p^{n}e^{\sqrt{-1}\xi
+i\Delta x} \\
+\end{align*}
+
+\begin{align*}
+\implies p &= \frac{1}{1 - r \left(e^{\sqrt{-1}\xi \Delta x}
+- 2 + e^{-\sqrt{-1}\xi \Delta x}\right)} \\
+           &= \frac{1}{1 - 2r \left(\cos(\xi\Delta x) - 1\right) } \\
+ &= \frac{1}{1 + 4r \left( \sin^2( \frac{\xi\Delta x}{2})\right) } 
+\end{align*}
+
+
+\vspace{15px}
+\par We need $|p| \leq 1 + c\Delta t$. 
+\vspace{15px}
+
+Since $1 + 4r \left( \sin^2(
+\frac{\xi\Delta x}{2})\right) \geq 1 \quad \forall\xi$
+
+\[
+\implies |p| = \left|\frac{1}{1 + 4r \left( \sin^2( \frac{\xi\Delta
+x}{2})\right) } \right| \leq 1 + c\Delta t
+.\] 
+
+\vspace{15px}
+\par so this method is unconditionally stable.
+
+\section{Problem 2}%
+\label{sec:problem_2}
+
+\subsection{Part 1}%
+\label{sub:part_1}
+
+\textbf{Show $\lambda^{k} = 2(\cos(k\pi \Delta x) - 1)$ and $\omega^{k}
+= \sin(k\pi i \Delta x) $are eigenvalues and eigenvectors of the matrix $(
+\Delta x)^{2}A$.} 
+\vspace{15px}
+
+\par Consider the $i^{th}$ row of $A \omega^{k}$
+\begin{align*}
+  (A \omega^{k})_{i} &= \sin(k\pi(i-1)\Delta x) - 2\sin(k\pi i\Delta x)
+  + \sin(k\pi (i+1)\Delta x) \\ 
+                     &= \sin(k\pi i \Delta x - k\pi \Delta x) + \sin(k\pi
+                     i \Delta x + k\pi\Delta x) - 2\sin(k\pi i \Delta x) \\
+                     &= \sin(k\pi i \Delta x)\cos(k\pi \Delta x)
+                     - \cancel{\cos(k\pi i \Delta x)\sin(k\pi \Delta x)}
+                     + \sin(k\pi i \Delta x)\cos(k\pi \Delta x)
+                     +\cancel{\cos(k\pi i \Delta x)\sin(k\pi \Delta x)}
+                     - 2\sin(k\pi i \Delta x)\\
+                     &=  \\
+\end{align*}
+
+This shows $2(\cos(k\pi \Delta x) - 1)$ is an eigenvalue and $\sin(k\pi
+i \Delta x)$ is an eigenvector.
+
+
+\subsection{Part 2}%
+\label{sub:part_2}
+
+Do the same for the vector $\cos(k\pi i \Delta x)$
+\[
+  \cos(k\pi(i-1)\Delta x) - 2\cos(k\pi i\Delta x) + \cos(k\pi(i+1) \Delta x)
+.\] 
+
+\subsection{Part 3}%
+\label{sub:part_3}
+
+We need zero boundary condition at $i=0$ and $i = N+1$.  $\cos(\dots i \dots)$ doesn't do that for us.
+
+
+\end{document}
