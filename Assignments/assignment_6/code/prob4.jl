@@ -5,54 +5,54 @@ theme(:mute)
 using Pkg
 Pkg.activate("DiffyQ")
 include("DiffyQ.jl")
-using .DiffyQ: Trapezoid_sys, BTCS
+using .DiffyQ: ForwardEuler_tsys
 
-# Space
-x0 = 0.0; x = 2.0;
-Δx = 0.01; L = x-x0; N = Int(L/Δx); 
-
-A = 1/Δx^2 * spdiagm(-1=>ones(N-1),0=>-2.0*ones(N),1=>ones(N-1))
-
-# Time
-t0 = 0.0; t = 0.2; 
-T = t-t0;
-Δt = 0.01; M = Int(T/Δt);
-
-# initial condition
-f(x) = convert(Array{Float64}, (x .< 1) .& (x .> 0))
-
-# boundary condition
-b = zeros(N); b[1] = 1.0; b[end] = 0.0; b = 1/(Δx^2) * b;
-
-xs = collect(0:N-1)*Δx
-u0 = f(xs)
+# solve ibvp over different spatial grids
+function ibvp(N)
+    # Space
+    x0 = 0.0; x = 2.0;
+    # Δx = 0.01; L = x-x0; N = Int(L/Δx); 
+    L = x-x0; Δx = L/N;
 
 
+    # Time
+    t0 = 0.0; t = 3.0; 
+    T = t-t0;
+    Δt = 10.0^(-5); M = Int(T/Δt);
 
+    # initial condition
+    p(x) = (1 .-0.5*x).^2
 
+    # boundary condition
+    α = 0.4
+    q(t) = 2*sin(t)^2
+    A = spdiagm(-1=>ones(N-1),0=>-2.0*ones(N),1=>ones(N-1))
+    A[1,1] = A[1,1] + (2-α*Δx)/(2+α*Δx)
+    A = 1/(Δx^2)*A
+    b = zeros(N); b[end] = q(N*Δt); b = 1/(Δx^2) * b;
 
+    function b_(t)
+        b = zeros(N); b[end] = 2*sin(t)^2;
+        return 1/(Δx^2) * b;
+    end
 
-# Backward Euler
-u = BTCS(M, T, u0, A, b)
+    xs = collect(0:N-1)*Δx
+    u0 = p(xs)
 
-
-plot(xs[1:N], u0[1:N])
-plot!(xs[1:N], u[1:N, end])
-
-anim = @animate for i ∈ 1:size(u)[2]
-    plot(xs[1:N], u[1:N, i])
+    # FTCS
+    u = ForwardEuler_tsys(M,T,u0,A,b_)
+    return u, xs
 end
-gif(anim, "BTCS.gif", fps = 3)
 
+u1, xs1 = ibvp(100)
+u2, xs2 = ibvp(200)
+u4, xs4 = ibvp(400)
 
+plot(xs1, u1[:,end])
+plot!(xs2, u2[:, end])
+plot!(xs4, u4[:, end])
 
-# Crank-Nicolson
-u = Trapezoid_sys(M, T, u0, A, b)
-
-plot(xs[1:N], u0[1:N])
-plot!(xs[1:N], u[1:N, end])
-
-anim = @animate for i ∈ 1:size(u)[2]
-    plot(xs[1:N], u[1:N, i])
-end
-gif(anim, "crank.gif", fps = 3)
+# anim = @animate for i ∈ 1:100:size(u)[2]
+#     plot(xs[1:N], u[1:N, i], ylims = [0.0, 2.0])
+# end
+# gif(anim, "radheatloss.gif", fps = 100)

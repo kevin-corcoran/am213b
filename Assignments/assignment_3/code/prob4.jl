@@ -8,6 +8,14 @@ include("RAS.jl") # Makes sure the module is run before using it
 using .RAS: RAS_stabf, RASrk
 
 # "Yellow" is the stability region
+# RK4
+A = [0 0
+    1/2 1/2]
+b = [0, 1]
+
+xs, Z = RASrk(A,b)
+# plotly()
+contourf(xs,xs,Z)
 
 # stability function for Heun's
 Φ(z) = 1.0 + z + z^2
